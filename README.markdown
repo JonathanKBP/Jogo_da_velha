@@ -3,6 +3,6 @@
 A Pen created on CodePen.io. Original URL: [https://codepen.io/jonathankbp/pen/WNwoKOy](https://codepen.io/jonathankbp/pen/WNwoKOy).
 
 <p align="center">
-  <img src="https://github.com/JonathanKBP/Gameflix/blob/master/prints/gameflix.png" alt="Pagina inicial do gameflix">
+  <img src="https://github.com/JonathanKBP/Jogo_da_velha/blob/master/src/img/printjogo.png" alt="Imagem do jogo">
 <p>
 
