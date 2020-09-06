@@ -24,6 +24,15 @@
   flex-direction: row;
 }
 
-.game-info{
-  margin-left: 20px;
-}
+.reset, .jogada{  
+  background: #fff;  
+  border: 1px solid #999;  
+  font-size: 20px;
+  color: #000;
+  float: left;  
+  height: 34px;  
+  margin-top: 1px;  
+  padding: 0;  
+  text-align: center;  
+  width: 100px;
+ }

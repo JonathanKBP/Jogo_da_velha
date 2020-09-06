@@ -3,13 +3,9 @@ class Jogo extends React.Component{
     return (      
       <div className="game">        
         <div className="game-board">          
-          <Tabuleiro/>               
+          <Tabuleiro/>
         </div>
-        
-        <div className="game-info">          
-          <ol>{""}</ol>        
-        </div>
-        
+      
       </div>    
     );  
   }
@@ -53,7 +49,9 @@ class Tabuleiro extends React.Component{
           {this.renderizarQuadrado(7)}
           {this.renderizarQuadrado(8)}
         </div>
-        
+        <div>{this.renderizarJogadaAleatoria()}</div>
+        <div>{this.renderizarRestart()}</div>
+            
        </div>
     );
   }
@@ -65,6 +63,50 @@ class Tabuleiro extends React.Component{
         />
     );
   }
+  
+  renderizarJogadaAleatoria(){
+    return(
+      <JogadaAleatoria
+          onClick={() => this.jogar()}
+      />
+    );
+  }
+  
+  jogar(){
+    const quadrados = this.state.quadrados.slice();
+    if (calculateWinner (quadrados)){      
+      alert ('Jogo já acabou');      
+      return;    
+    }
+    while(true){
+      const i = Math.floor(Math.random() * 10);
+      if (!(quadrados[i])){
+        quadrados[i] = this.state.xIsNext ? 'X' : '0';
+        break;
+      }        
+    }   
+    this.setState ({      
+    quadrados: quadrados,      
+    xIsNext: !this.state.xIsNext,    
+   }); 
+  }
+  
+  renderizarRestart (){
+    return(
+      <Restart
+          onClick={() => this.restart()}
+      />
+    );
+  }
+  
+  restart (){
+    const quadrados = this.state.quadrados.fill(null);
+    this.setState ({      
+     quadrados: quadrados,      
+     xIsNext: !this.state.xIsNext,    
+   });
+  }
+  
   handleClick (i){    
    const quadrados = this.state.quadrados.slice();    
    if (calculateWinner (quadrados)){      
@@ -83,6 +125,30 @@ class Tabuleiro extends React.Component{
  }
 }
 
+class JogadaAleatoria extends React.Component{
+  render() {
+    return(
+      <button 
+        className="jogada" 
+        onClick={() => {this.props.onClick()}}>
+        Jogar
+      </button>
+    );
+  }
+}
+
+class Restart extends React.Component{
+  render() {
+    return(
+      <button 
+        className="reset" 
+        onClick={() => {this.props.onClick()}}>
+        Restart
+      </button>
+    );
+  }
+}
+
 class Quadrado extends React.Component {    
   render (){    
     return (      
@@ -94,8 +160,6 @@ class Quadrado extends React.Component {
     );  
   }  
 }
-
-
 
 /*function Quadrado (props){
   return(
